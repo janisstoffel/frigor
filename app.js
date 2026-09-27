@@ -33,7 +33,7 @@ document.getElementById('team').addEventListener('input',e=>{state.team=e.target
 document.getElementById('config-form').addEventListener('submit',e=>e.preventDefault());
 document.querySelectorAll('.view-switch button').forEach(b=>b.addEventListener('click',()=>{state.view=b.dataset.view;update();}));
 const motion=document.getElementById('motion');
-function setMotion(enabled){stage.classList.toggle('paused',!enabled);motion.setAttribute('aria-pressed',String(enabled));motion.innerHTML=enabled?'<span class="motion-icon" aria-hidden="true">Ⅱ</span> Animation pausieren':'<span class="motion-icon" aria-hidden="true">▷</span> Animation starten';}
+function setMotion(enabled){stage.classList.toggle('motion-enabled',enabled);stage.classList.toggle('paused',!enabled);motion.setAttribute('aria-pressed',String(enabled));motion.innerHTML=enabled?'<span class="motion-icon" aria-hidden="true">Ⅱ</span> Animation pausieren':'<span class="motion-icon" aria-hidden="true">▷</span> Animation starten';}
 motion.addEventListener('click',()=>setMotion(stage.classList.contains('paused')));
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');setMotion(!reduced.matches);
 reduced.addEventListener('change',e=>setMotion(!e.matches));update();
